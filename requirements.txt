@@ -1,0 +1,9 @@
+pandas
+numpy
+uvicorn
+fastapi
+oauth2client
+PyOpenSSL
+gspread
+python-dotenv
+pandas
