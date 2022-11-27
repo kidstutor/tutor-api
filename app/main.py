@@ -2,6 +2,7 @@ from fastapi import FastAPI
 import pandas as pd
 # from db.dbutils import Database as db
 from app.entity.student import Student as Student
+from app.entity.env import Env as Env
 from dotenv import load_dotenv
 
 app = FastAPI()
@@ -22,6 +23,12 @@ async def get_students() -> dict:
     s = Student()
     students = s.GetStudents()
     return {"data": students}
+
+@app.get("/env")
+async def get_env() -> dict:
+    e = Env()
+    data = e.get_env()
+    return {"data" : data}
 
 def main():
     scopes = ['https://www.googleapis.com/auth/spreadsheets',
