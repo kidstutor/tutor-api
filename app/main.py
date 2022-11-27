@@ -20,9 +20,13 @@ async def get_groups() -> dict:
 
 @app.get("/students")
 async def get_students() -> dict:
-    s = Student()
-    students = s.GetStudents()
-    return {"data": students}
+    try:
+        s = Student()
+        students = s.GetStudents()
+        return {"data": students}
+    except Exception as err:
+        return {"exception": repr(err)}
+
 
 @app.get("/env")
 async def get_env() -> dict:

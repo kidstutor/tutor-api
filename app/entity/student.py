@@ -6,12 +6,15 @@ class Student:
     _dbInstance = None
 
     def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super(Student, cls).__new__(cls)
-        
-        if cls._dbInstance is None:
-            cls._dbInstance = Database()
-        return cls._instance
+        try:
+            if cls._instance is None:
+                cls._instance = super(Student, cls).__new__(cls)
+            
+            if cls._dbInstance is None:
+                cls._dbInstance = Database()
+            return cls._instance
+        except:
+            return None
 
     @classmethod
     def GetStudents(cls) -> dict():
@@ -19,4 +22,5 @@ class Student:
             students_df =  cls._dbInstance.ReadData(spread_sheet_name='students')
             return students_df.to_dict("records")
         except Exception as err:
-            return {"exception": repr(err)}
+            print (err)
+            return {"exception": err}
