@@ -15,5 +15,8 @@ class Student:
 
     @classmethod
     def GetStudents(cls) -> dict():
-        students_df =  cls._dbInstance.ReadData(spread_sheet_name='students')
-        return students_df.to_dict("records")
+        try:
+            students_df =  cls._dbInstance.ReadData(spread_sheet_name='students')
+            return students_df.to_dict("records")
+        except Exception as err:
+            return {"exception": repr(err)}
