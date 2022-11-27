@@ -4,13 +4,13 @@ from dotenv import load_dotenv
 import os
 import pandas as pd
 
-class Database:
+class GoogleSheet:
     _conn = None
     _instance = None
 
     def __new__(cls):
         if cls._instance is None:
-            cls._instance = super(Database, cls).__new__(cls)
+            cls._instance = super(__class__, cls).__new__(cls)
             scopes = ['https://www.googleapis.com/auth/spreadsheets',
                   'https://www.googleapis.com/auth/drive']
 

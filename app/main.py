@@ -3,10 +3,12 @@ import pandas as pd
 # from db.dbutils import Database as db
 from app.entity.student import Student as Student
 from app.entity.env import Env as Env
+from app.entity.dbconn import DBConn
 from dotenv import load_dotenv
 
 app = FastAPI()
 load_dotenv()
+DBConn()
 
 @app.get("/")
 def read_root():
@@ -29,8 +31,8 @@ async def get_students() -> dict:
 @app.get("/students/cache")
 async def reset_cache() -> dict:
     try:
-        Student().ResetCache()
-        return {"data": "Cache Reset"}
+        ret = Student().ResetCache()
+        return {"data": ret}
     except Exception as err:
         return {"exception": err}
 
