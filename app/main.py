@@ -6,9 +6,10 @@ from app.entity.env import Env as Env
 from app.entity.dbconn import DBConn
 from dotenv import load_dotenv
 
-app = FastAPI()
 load_dotenv()
-DBConn()
+app = FastAPI()
+
+# DBConn()
 
 @app.get("/")
 def read_root():
